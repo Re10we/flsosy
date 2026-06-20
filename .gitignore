@@ -118,3 +118,7 @@ app.*.symbols
 
 # FVM Version Cache
 .fvm/
+
+.agents/
+.dart_tool/
+lib/generated/

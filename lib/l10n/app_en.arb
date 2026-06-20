@@ -1,0 +1,14 @@
+{
+  "market": "Market",
+  "favorites": "Favorites",
+  "sosy": "Sosy",
+  "sosynAnalyzing": "sosyn is analyzing the markets...",
+  "watchlistEmpty": "Your watchlist is empty. Tap the star icon on the Market tab to track your favorite coins.",
+  "failedToLoadMarketData": "Failed to load market data",
+  "retry": "Retry",
+  "buy": "Buy",
+  "sell": "Sell",
+  "marketCap": "Market Cap",
+  "volume24h": "24h Volume",
+  "high24h": "24h High"
+}
