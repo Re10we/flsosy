@@ -43,10 +43,6 @@ class CoinItemWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Render the coin logo using the logo URL. To ensure UI stability, we use
-            // ClipRRect to force a circular boundary (matching the design system),
-            // and provide a fallback Bitcoin icon container during loading or error states.
-
             /// Coin logo
             Container(
               padding: const EdgeInsets.all(8),

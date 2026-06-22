@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flsosy/style/fonts.dart';
-import 'package:flsosy/style/colors.dart';
 
 import '../../extensions/context_extensions.dart';
 import '../../data/models/coin_model.dart';
@@ -11,9 +9,6 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final typography = SFont();
-    final colors = SColors();
-
     return StreamBuilder<List<CoinModel>>(
       stream: IsarService.instance.watchFavorites(),
       builder: (context, snapshot) {
@@ -38,7 +33,8 @@ class FavoritesPage extends StatelessWidget {
                   child: Icon(
                     Icons.star_border,
                     size: 52,
-                    color: colors.neutralMutedSilverGray.withValues(alpha: 0.4),
+                    color: context.colors.neutralMutedSilverGray
+                        .withValues(alpha: 0.4),
                   ),
                 ),
                 const SizedBox(height: 40),
@@ -47,7 +43,7 @@ class FavoritesPage extends StatelessWidget {
                 Text(
                   context.strings?.yourWatchlistIsEmpty ?? '',
                   textAlign: TextAlign.center,
-                  style: typography.headlineLgMobile,
+                  style: context.fonts.headlineLgMobile,
                 ),
                 const SizedBox(height: 8),
 
@@ -58,8 +54,8 @@ class FavoritesPage extends StatelessWidget {
                           ?.tapTheStarIconOnTheMarketTabToTrackYourFavoriteCoins ??
                       '',
                   textAlign: TextAlign.center,
-                  style: typography.bodyLg
-                      .copyWith(color: colors.neutralMutedSilverGray),
+                  style: context.fonts.bodyLg
+                      .copyWith(color: context.colors.neutralMutedSilverGray),
                 ),
               ],
             ),
@@ -72,27 +68,132 @@ class FavoritesPage extends StatelessWidget {
           separatorBuilder: (_, __) => const SizedBox(height: 12),
           itemBuilder: (context, index) {
             final coin = favorites[index];
-            return ListTile(
-              leading: Image.network(
-                coin.imageUrl,
-                width: 40,
-                height: 40,
-                errorBuilder: (_, __, ___) => const Icon(Icons.monetization_on),
+
+            final isPositive = (coin.percentChange24h) >= 0;
+            final percentageSign = isPositive ? '+' : '';
+            final percentageColor = isPositive
+                ? context.colors.accentNeonCyberGreen
+                : Colors.redAccent;
+
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              decoration: BoxDecoration(
+                color: context.colors.accentHeaderGreen.withValues(alpha: 0.6),
+                border: Border.all(
+                  color: context.colors.neutralMutedSilverGray
+                      .withValues(alpha: 0.2),
+                ),
+                borderRadius: BorderRadius.circular(12),
               ),
-              title: Text(
-                coin.name,
-                style: typography.bodyLg
-                    .copyWith(color: colors.neutralMutedSilverGray),
-              ),
-              subtitle: Text(
-                '\\${coin.price.toStringAsFixed(2)}',
-                style: typography.bodySm
-                    .copyWith(color: colors.accentNeonCyberGreen),
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.redAccent),
-                onPressed: () async =>
-                    await IsarService.instance.removeFavorite(coin.id),
+              child: Row(
+                children: [
+                  /// Logo coin
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: context.colors.coinLogoBackground,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        coin.imageUrl,
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          width: 40,
+                          height: 40,
+                          color: context.colors.neutralMutedSilverGray
+                              .withValues(alpha: 0.2),
+                          child: const Icon(
+                            Icons.currency_bitcoin,
+                            color: Colors.white70,
+                            size: 24,
+                          ),
+                        ),
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            width: 40,
+                            height: 40,
+                            color: context.colors.neutralMutedSilverGray
+                                .withValues(alpha: 0.2),
+                            child: const Icon(
+                              Icons.currency_bitcoin,
+                              color: Colors.white70,
+                              size: 24,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 16),
+
+                  /// Info coin
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        /// Symbol coin
+                        Text(
+                          coin.symbol.toUpperCase(),
+                          style: context.fonts.bodyLg.copyWith(
+                            color: context.colors.pureWhite,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+
+                        /// Name coin
+                        Text(
+                          coin.name,
+                          style: context.fonts.bodySm.copyWith(
+                            color: context.colors.neutralMutedSilverGray,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  /// Price section
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      /// Price coin
+                      Text(
+                        '\$${coin.price.toStringAsFixed(2)}',
+                        style: context.fonts.bodyLg.copyWith(
+                          color: context.colors.pureWhite,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+
+                      /// Percentage change coin
+                      Text(
+                        '$percentageSign${coin.percentChange24h.toStringAsFixed(2)}%',
+                        style: context.fonts.bodySm.copyWith(
+                          color: percentageColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 16),
+
+                  /// Remove favorite icon
+                  GestureDetector(
+                    onTap: () => _onRemoveFavorite(coin),
+                    child: Icon(
+                      Icons.star,
+                      color: context.colors.accentNeonCyberGreen,
+                      size: 26,
+                    ),
+                  ),
+                ],
               ),
             );
           },
@@ -100,4 +201,7 @@ class FavoritesPage extends StatelessWidget {
       },
     );
   }
+
+  void _onRemoveFavorite(CoinModel coin) async =>
+      await IsarService.instance.removeFavorite(coin.id);
 }

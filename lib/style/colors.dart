@@ -14,6 +14,7 @@ class SColors {
   final accentHeaderGreen = const Color(0xFF0C160C);
   final borderGreen = const Color(0xFF3B4B3A);
   final coinLogoBackground = const Color(0xFF222D22);
+  final favoriteBackground = const Color(0xFF182218);
 
   // Semantic aliases
   Color get surface => baseObsidianBlack;
