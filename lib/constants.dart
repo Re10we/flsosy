@@ -1,0 +1,1 @@
+final kPaginationLimit = 20;

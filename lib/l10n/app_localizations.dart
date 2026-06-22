@@ -118,11 +118,17 @@ abstract class AppLocalizations {
   /// **'sosyn is analyzing the markets...'**
   String get sosynAnalyzing;
 
-  /// No description provided for @watchlistEmpty.
+  /// No description provided for @yourWatchlistIsEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Your watchlist is empty. Tap the star icon on the Market tab to track your favorite coins.'**
-  String get watchlistEmpty;
+  /// **'Your watchlist is empty. '**
+  String get yourWatchlistIsEmpty;
+
+  /// No description provided for @tapTheStarIconOnTheMarketTabToTrackYourFavoriteCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the star icon on the Market tab to track your favorite coins and assets in real-time.'**
+  String get tapTheStarIconOnTheMarketTabToTrackYourFavoriteCoins;
 
   /// No description provided for @failedToLoadMarketData.
   ///
@@ -165,6 +171,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'24h High'**
   String get high24h;
+
+  /// No description provided for @noCoinsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No coins found.'**
+  String get noCoinsFound;
+
+  /// No description provided for @errorSecureConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'The secure connection to the blockchain node cluster was interrupted. Terminal sync paused.'**
+  String get errorSecureConnection;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get clearAll;
+
+  /// No description provided for @supply.
+  ///
+  /// In en, this message translates to:
+  /// **'Supply'**
+  String get supply;
+
+  /// No description provided for @failedToLoadCoinDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load coin details'**
+  String get failedToLoadCoinDetail;
+
+  /// No description provided for @removeFromFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from favorites'**
+  String get removeFromFavorites;
+
+  /// No description provided for @addToFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to favorites'**
+  String get addToFavorites;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
 }
 
 class _AppLocalizationsDelegate

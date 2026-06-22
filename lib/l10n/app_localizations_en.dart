@@ -21,8 +21,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sosynAnalyzing => 'sosyn is analyzing the markets...';
 
   @override
-  String get watchlistEmpty =>
-      'Your watchlist is empty. Tap the star icon on the Market tab to track your favorite coins.';
+  String get yourWatchlistIsEmpty => 'Your watchlist is empty. ';
+
+  @override
+  String get tapTheStarIconOnTheMarketTabToTrackYourFavoriteCoins =>
+      'Tap the star icon on the Market tab to track your favorite coins and assets in real-time.';
 
   @override
   String get failedToLoadMarketData => 'Failed to load market data';
@@ -44,4 +47,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get high24h => '24h High';
+
+  @override
+  String get noCoinsFound => 'No coins found.';
+
+  @override
+  String get errorSecureConnection =>
+      'The secure connection to the blockchain node cluster was interrupted. Terminal sync paused.';
+
+  @override
+  String get clearAll => 'Clear all';
+
+  @override
+  String get supply => 'Supply';
+
+  @override
+  String get failedToLoadCoinDetail => 'Failed to load coin details';
+
+  @override
+  String get removeFromFavorites => 'Remove from favorites';
+
+  @override
+  String get addToFavorites => 'Add to favorites';
+
+  @override
+  String get today => 'Today';
 }

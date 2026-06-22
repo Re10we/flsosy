@@ -3,12 +3,21 @@
   "favorites": "Favorites",
   "sosy": "Sosy",
   "sosynAnalyzing": "sosyn is analyzing the markets...",
-  "watchlistEmpty": "Your watchlist is empty. Tap the star icon on the Market tab to track your favorite coins.",
+  "yourWatchlistIsEmpty": "Your watchlist is empty. ",
+  "tapTheStarIconOnTheMarketTabToTrackYourFavoriteCoins": "Tap the star icon on the Market tab to track your favorite coins and assets in real-time.",
   "failedToLoadMarketData": "Failed to load market data",
   "retry": "Retry",
   "buy": "Buy",
   "sell": "Sell",
   "marketCap": "Market Cap",
   "volume24h": "24h Volume",
-  "high24h": "24h High"
+  "high24h": "24h High",
+  "noCoinsFound": "No coins found.",
+  "errorSecureConnection": "The secure connection to the blockchain node cluster was interrupted. Terminal sync paused.",
+  "clearAll": "Clear all",
+  "supply": "Supply",
+  "failedToLoadCoinDetail": "Failed to load coin details",
+  "removeFromFavorites": "Remove from favorites",
+  "addToFavorites": "Add to favorites",
+  "today": "Today"
 }

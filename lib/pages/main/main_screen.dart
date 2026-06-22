@@ -1,8 +1,10 @@
 import 'dart:ui';
 
+import 'package:flsosy/pages/home/bloc/coin_market_bloc.dart';
 import 'package:flsosy/pages/home/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flsosy/pages/favorites/favorites_page.dart';
@@ -23,7 +25,10 @@ class _MainScreenState extends State<MainScreen> {
   final _isBotOpen = ValueNotifier<bool>(false);
 
   final _pages = [
-    const HomePage(),
+    BlocProvider(
+      create: (_) => CoinMarketBloc(),
+      child: const HomePage(),
+    ),
     const FavoritesPage(),
   ];
 

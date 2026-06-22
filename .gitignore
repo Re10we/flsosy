@@ -122,3 +122,4 @@ app.*.symbols
 .agents/
 .dart_tool/
 lib/generated/
+.env
