@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../extensions/context_extensions.dart';
 import '../../data/models/coin_model.dart';
 import '../../isar/isar_service.dart';
+import '../../widgets/coin_logo_widget.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -87,48 +88,7 @@ class FavoritesPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  /// Logo coin
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: context.colors.coinLogoBackground,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        coin.imageUrl,
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          width: 40,
-                          height: 40,
-                          color: context.colors.neutralMutedSilverGray
-                              .withValues(alpha: 0.2),
-                          child: const Icon(
-                            Icons.currency_bitcoin,
-                            color: Colors.white70,
-                            size: 24,
-                          ),
-                        ),
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Container(
-                            width: 40,
-                            height: 40,
-                            color: context.colors.neutralMutedSilverGray
-                                .withValues(alpha: 0.2),
-                            child: const Icon(
-                              Icons.currency_bitcoin,
-                              color: Colors.white70,
-                              size: 24,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
+                  CoinLogoWidget(imageUrl: coin.imageUrl),
 
                   const SizedBox(width: 16),
 

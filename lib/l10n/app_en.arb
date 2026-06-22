@@ -19,5 +19,7 @@
   "failedToLoadCoinDetail": "Failed to load coin details",
   "removeFromFavorites": "Remove from favorites",
   "addToFavorites": "Add to favorites",
-  "today": "Today"
+  "today": "Today",
+  "askSosynAboutTheMarkets": "Ask sosyn about the markets...",
+  "sosynIntelligence": "SOSYN INTELLIGENCE"
 }

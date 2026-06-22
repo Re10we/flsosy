@@ -219,6 +219,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Today'**
   String get today;
+
+  /// No description provided for @askSosynAboutTheMarkets.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask sosyn about the markets...'**
+  String get askSosynAboutTheMarkets;
+
+  /// No description provided for @sosynIntelligence.
+  ///
+  /// In en, this message translates to:
+  /// **'SOSYN INTELLIGENCE'**
+  String get sosynIntelligence;
 }
 
 class _AppLocalizationsDelegate

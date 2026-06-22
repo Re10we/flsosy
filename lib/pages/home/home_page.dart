@@ -11,7 +11,8 @@ import 'widgets/coin_item_widget.dart';
 import 'widgets/first_page_error_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final ValueNotifier<bool>? isBotOpenNotifier;
+  const HomePage({super.key, this.isBotOpenNotifier});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,14 +26,34 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _initPagingController();
+    _startTimer();
+    widget.isBotOpenNotifier?.addListener(_onBotOpenChanged);
+  }
+
+  void _onBotOpenChanged() {
+    if (widget.isBotOpenNotifier?.value == true) {
+      _stopTimer();
+    } else {
+      _startTimer();
+    }
+  }
+
+  void _startTimer() {
+    _autoRefreshTimer?.cancel();
     _autoRefreshTimer = Timer.periodic(const Duration(seconds: 15), (_) {
       _pagingController.refresh();
     });
   }
 
+  void _stopTimer() {
+    _autoRefreshTimer?.cancel();
+    _autoRefreshTimer = null;
+  }
+
   @override
   void dispose() {
-    _autoRefreshTimer?.cancel();
+    widget.isBotOpenNotifier?.removeListener(_onBotOpenChanged);
+    _stopTimer();
     _pagingController.dispose();
     super.dispose();
   }

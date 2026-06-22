@@ -1,5 +1,3 @@
-// lib/pages/home/widgets/first_page_error_widget.dart
-
 import 'package:flsosy/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -73,8 +71,8 @@ class _FirstPageErrorState extends State<FirstPageError>
                       padding: const EdgeInsets.all(35),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: context.colors.pureWhite
-                              .withValues(alpha: 0.05),
+                          color:
+                              context.colors.pureWhite.withValues(alpha: 0.05),
                         ),
                         borderRadius: BorderRadius.circular(12),
                         color: context.colors.baseObsidianBlack,

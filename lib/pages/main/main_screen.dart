@@ -12,6 +12,8 @@ import 'package:flsosy/pages/favorites/favorites_page.dart';
 import '../../extensions/context_extensions.dart';
 import '../../generated/assets.dart';
 import 'package:flsosy/pages/chat/chat_page.dart';
+import 'package:flsosy/pages/chat/bloc/chat_bloc.dart';
+import 'package:flsosy/data/services/generative_ai_service.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -24,18 +26,23 @@ class _MainScreenState extends State<MainScreen> {
   final _selectedIndex = ValueNotifier<int>(0);
   final _isBotOpen = ValueNotifier<bool>(false);
 
-  final _pages = [
+  late final _pages = [
     BlocProvider(
       create: (_) => CoinMarketBloc(),
-      child: const HomePage(),
+      child: HomePage(isBotOpenNotifier: _isBotOpen),
     ),
     const FavoritesPage(),
   ];
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        onEndDrawerChanged: (isOpen) => _isBotOpen.value = isOpen,
         endDrawer: Drawer(
-          child: const ChatPage(),
+          backgroundColor: context.colors.surface,
+          child: BlocProvider(
+            create: (_) => ChatBloc(aiService: GenerativeAIService()),
+            child: const ChatPage(),
+          ),
         ),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -94,8 +101,8 @@ class _MainScreenState extends State<MainScreen> {
             /// Bot button
             ValueListenableBuilder(
               valueListenable: _isBotOpen,
-              builder: (_, isBotOpen, __) => IconButton(
-                onPressed: _openBotDrawer,
+              builder: (context, isBotOpen, __) => IconButton(
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
                 icon: SvgPicture.asset(
                   isBotOpen ? Assets.ic_bot_active : Assets.ic_bot_disable,
                   width: 22,
@@ -162,9 +169,4 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       );
-
-  void _openBotDrawer() {
-    Scaffold.of(context).openEndDrawer();
-    _isBotOpen.value = !_isBotOpen.value;
-  }
 }

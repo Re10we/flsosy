@@ -72,4 +72,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get today => 'Today';
+
+  @override
+  String get askSosynAboutTheMarkets => 'Ask sosyn about the markets...';
+
+  @override
+  String get sosynIntelligence => 'SOSYN INTELLIGENCE';
 }
